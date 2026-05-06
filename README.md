@@ -1,2 +1,2 @@
 # OER
-Open Educational Resources for Anatomy Learning
+Open Educational Resources for Learning Anatomy 
