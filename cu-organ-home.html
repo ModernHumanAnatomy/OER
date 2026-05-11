@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CU Plastinated Organ Library — Specimen Collection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Barlow:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080a12;--surface:#0d1021;--card:#101428;--border:#1c2040;--border-h:#2a305c;
+  --gold:#CFB87C;--gold-text:#2a1e08;--gold-bg:rgba(207,184,124,.08);--gold-bd:rgba(207,184,124,.18);
+  --red:#e85c6e;--text:#d8dcf0;--text-dim:#6070a8;--text-mid:#9098c0;
+  --font-serif:'Cormorant Garamond',Georgia,serif;
+  --font-sans:'Barlow',system-ui,sans-serif;
+  --font-mono:'Fira Code',monospace;
+  --ease:200ms cubic-bezier(.25,.46,.45,.94);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.4}
+
+/* ─── NAV ─── */
+.site-nav{background:rgba(8,10,18,.96);border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;gap:28px;height:44px;position:sticky;top:0;z-index:50;backdrop-filter:blur(12px)}
+.nav-brand{font-family:var(--font-mono);font-size:10px;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;white-space:nowrap;flex-shrink:0;text-decoration:none}
+.nav-links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{font-size:12px;font-weight:500;color:var(--text-dim);text-decoration:none;padding:4px 12px;border-radius:4px;white-space:nowrap;transition:var(--ease)}
+.nav-links a:hover{color:var(--text);background:rgba(255,255,255,.05)}
+
+/* ─── HERO ─── */
+.hero{position:relative;min-height:480px;display:flex;align-items:center;overflow:hidden;border-bottom:1px solid var(--border)}
+
+/* Mosaic background */
+.hero-mosaic{position:absolute;inset:0;display:grid;grid-template-columns:repeat(10,1fr);grid-template-rows:repeat(2,1fr);gap:3px;opacity:.13;filter:saturate(.5) brightness(.9);pointer-events:none}
+.hero-mosaic img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Fade overlays */
+.hero-fade{position:absolute;inset:0;background:linear-gradient(135deg,rgba(8,10,18,.96) 0%,rgba(8,10,18,.80) 50%,rgba(8,10,18,.92) 100%)}
+.hero-fade-b{position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(0deg,var(--bg),transparent)}
+
+/* Hero content */
+.hero-content{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:64px 40px;width:100%}
+.hero-eyebrow{font-family:var(--font-mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:'';display:inline-block;width:32px;height:1px;background:var(--gold)}
+h1.hero-title{font-family:var(--font-serif);font-size:clamp(44px,7vw,88px);font-weight:400;letter-spacing:-.03em;line-height:.95;color:#f0f2ff;margin-bottom:24px}
+h1.hero-title em{font-style:italic;color:var(--gold)}
+.hero-desc{font-size:15px;font-weight:300;color:var(--text-mid);max-width:560px;line-height:1.65;margin-bottom:40px}
+
+/* Stats row */
+.hero-stats{display:flex;gap:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;display:inline-flex;background:rgba(13,16,33,.7);backdrop-filter:blur(8px)}
+.hero-stat{padding:16px 28px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:3px}
+.hero-stat:last-child{border-right:none}
+.stat-num{font-family:var(--font-serif);font-size:36px;font-weight:500;color:var(--gold);line-height:1}
+.stat-label{font-family:var(--font-mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim)}
+
+/* Scroll cue */
+.hero-scroll{margin-top:36px;display:flex;align-items:center;gap:10px;font-size:11px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:.1em;cursor:pointer;width:fit-content;transition:var(--ease);text-decoration:none;text-transform:uppercase}
+.hero-scroll:hover{color:var(--gold)}
+.scroll-arrow{width:28px;height:28px;border:1px solid var(--border-h);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:var(--ease)}
+.hero-scroll:hover .scroll-arrow{border-color:var(--gold);background:var(--gold-bg)}
+
+/* ─── SYSTEMS SECTION ─── */
+.systems{padding:64px 40px 80px;max-width:1400px;margin:0 auto}
+.section-header{margin-bottom:32px;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.section-eyebrow{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.section-eyebrow::before{content:'';display:inline-block;width:20px;height:1px;background:var(--gold)}
+h2.section-title{font-family:var(--font-serif);font-size:clamp(28px,4vw,44px);font-weight:400;letter-spacing:-.02em;color:#eef0fa;line-height:1}
+.section-desc{font-size:13px;color:var(--text-dim);line-height:1.55;max-width:360px;text-align:right}
+
+/* Systems grid */
+.systems-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+
+/* System card */
+.sys-card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;text-decoration:none;color:inherit;transition:transform var(--ease),border-color var(--ease),box-shadow var(--ease);animation:cardIn 500ms cubic-bezier(.22,.68,0,1.1) both}
+@keyframes cardIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.sys-card:nth-child(1){animation-delay:0ms}
+.sys-card:nth-child(2){animation-delay:80ms}
+.sys-card:nth-child(3){animation-delay:160ms}
+.sys-card:nth-child(4){animation-delay:240ms}
+.sys-card:nth-child(5){animation-delay:320ms}
+.sys-card:hover{transform:translateY(-5px);border-color:var(--gold-bd);box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 0 1px var(--gold-bg)}
+
+/* Image strip */
+.sys-imgs{display:flex;height:160px;overflow:hidden;background:#06080e;flex-shrink:0;position:relative}
+.sys-imgs img{flex:1;object-fit:cover;min-width:0;display:block;filter:brightness(.85) saturate(.85);transition:filter 300ms ease}
+.sys-imgs img+img{border-left:2px solid var(--bg)}
+.sys-card:hover .sys-imgs img{filter:brightness(.95) saturate(1)}
+
+/* System number badge */
+.sys-num-badge{position:absolute;top:10px;left:10px;font-family:var(--font-mono);font-size:10px;color:var(--gold);background:rgba(8,10,18,.75);backdrop-filter:blur(4px);padding:2px 7px;border-radius:4px;letter-spacing:.08em}
+
+/* Card body */
+.sys-body{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1}
+.sys-name{font-family:var(--font-serif);font-size:19px;font-weight:500;color:#eef0fa;line-height:1.2;margin-bottom:10px}
+.sys-count{font-family:var(--font-mono);font-size:11px;color:var(--text-dim);margin-bottom:14px;display:flex;align-items:baseline;gap:5px}
+.count-big{font-size:22px;font-family:var(--font-serif);font-weight:500;color:var(--gold);line-height:1}
+
+/* Category chips */
+.sys-cats{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:18px;flex:1}
+.cat-chip{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-family:var(--font-mono);letter-spacing:.06em;padding:3px 8px;border-radius:100px;border:1px solid;white-space:nowrap;line-height:1.5}
+.cat-chip-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+
+/* View link */
+.sys-link{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--gold);margin-top:auto;padding-top:14px;border-top:1px solid var(--border)}
+.sys-link-arrow{width:24px;height:24px;border:1px solid var(--gold-bd);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:var(--ease);margin-left:auto}
+.sys-card:hover .sys-link-arrow{background:var(--gold);border-color:var(--gold)}
+.sys-card:hover .sys-link-arrow svg{stroke:#2a1e08}
+
+/* ─── ABOUT SECTION ─── */
+.about{border-top:1px solid var(--border);background:linear-gradient(180deg,rgba(13,16,33,.6) 0%,transparent 100%)}
+.about-inner{max-width:1400px;margin:0 auto;padding:64px 40px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.about-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.about-label::before{content:'';display:inline-block;width:20px;height:1px;background:var(--gold)}
+.about-title{font-family:var(--font-serif);font-size:clamp(24px,3vw,36px);font-weight:400;line-height:1.15;color:#eef0fa;margin-bottom:16px}
+.about-text{font-size:14px;font-weight:300;color:var(--text-mid);line-height:1.75}
+.about-text+.about-text{margin-top:12px}
+
+.about-meta{display:grid;gap:20px}
+.meta-item{border-left:2px solid var(--border-h);padding-left:16px}
+.meta-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:4px}
+.meta-value{font-family:var(--font-serif);font-size:16px;font-weight:500;color:var(--text);line-height:1.35}
+.meta-value a{color:var(--gold);text-decoration:none}
+.meta-value a:hover{text-decoration:underline}
+
+/* ─── FOOTER ─── */
+footer{max-width:1400px;margin:0 auto;padding:20px 40px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer p{font-size:11px;color:var(--text-dim);line-height:1.5}
+footer a{color:var(--gold);text-decoration:none}
+.footer-legend{display:flex;gap:20px;flex-wrap:wrap}
+.footer-sys{font-size:11px;color:var(--text-dim);font-family:var(--font-mono)}
+
+/* Responsive */
+@media(max-width:1100px){
+  .systems-grid{grid-template-columns:repeat(3,1fr)}
+  .sys-card:nth-child(4),.sys-card:nth-child(5){/* no special layout needed */}
+  .about-inner{grid-template-columns:1fr;gap:40px}
+  .section-desc{text-align:left;max-width:100%}
+}
+@media(max-width:700px){
+  .site-nav,.systems,.about-inner,footer{padding-left:16px;padding-right:16px}
+  .hero-content{padding:48px 16px}
+  h1.hero-title{font-size:clamp(38px,11vw,60px)}
+  .systems-grid{grid-template-columns:1fr}
+  .sys-imgs{height:200px}
+  .hero-stats{flex-wrap:wrap;border-radius:8px}
+  .hero-stat{padding:12px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav class="site-nav">
+  <a href="cu-organ-home.html" class="nav-brand">CU Organ Library</a>
+  <div class="nav-links">
+    <a href="index.html" style="color:var(--gold);opacity:.8;border-right:1px solid var(--border);padding-right:14px;margin-right:6px">← MHA OER</a>
+    <a href="nervous-system-specimens.html">Nervous System</a>
+    <a href="cardiovascular-respiratory-specimens.html">Cardiovascular &amp; Respiratory</a>
+    <a href="gastrointestinal-specimens.html">Gastrointestinal</a>
+    <a href="genitourinary-reproductive-specimens.html">Genitourinary &amp; Reproductive</a>
+    <a href="lymphatic-specimens.html">Lymphatic</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <!-- Mosaic background images from the collection -->
+  <div class="hero-mosaic" aria-hidden="true">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f7b5470fefebfb5ad5b2e90_Brain%201.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/60c94a5f52e42231f8624fbf_cardiorespiratory%20bloc.png" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f85c59da25bf1c88b7a631d_Liver.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/60c960fa1226ae010c36c1cb_female%20GU_full%202.png" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/64e62eed4f53a4eec1ee5058_Spleen%20and%20Splenomegaly.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f96f59db77c4f1117733001_Full%20CNS%3APNS.png" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f7bc0f9e2d68ba9fa09c24e_PLAX1.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f85cb7ecfe5993fc2350a57_Kidney%20full.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/64e5699a06340101577a3603_Bronchial%20Tree%20copy.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f7b734d5d8c1e4ac15bf530_Coronal%20slices.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/64e62e052e825d3ef935e734_Brain%20-%20Glioblastoma%20with%20Uncal%20Herniation.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/60c952cebf006f5a9e244166_heart_atrioventricular%20view.png" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f85cd8f952706f68c343602_Stomach.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/60c960788518236b75cb83d7_male%20GU_full%20kidney.png" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/672e8ad937a6c92609a4b0ed_IMG_4426%20Edited%20copy.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f85cfeb61966f033bbeb218_Larynx.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/64e62d625a8ca6c73db0157e_Huntington%27s%20Disease.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f7b77a960676c0400158beb_CNS%201.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f7bb8b0efb8490975d6c22a_Heart%201.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/64e62f24a7d56667e9fd32d2_Cysts%2C%20Tumors%2C%20and%20Lymph%20Nodes.jpg" alt="" loading="lazy">
+  </div>
+  <div class="hero-fade"></div>
+  <div class="hero-fade-b"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">University of Colorado Anschutz Medical Campus</p>
+    <h1 class="hero-title">Plastinated<br>Organ <em>Library</em></h1>
+    <p class="hero-desc">A curated collection of plastinated anatomical specimens used in the Modern Human Anatomy Master's program. Explore fixed preparations of human organ systems for anatomical study, pathological comparison, and medical imaging correlation.</p>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="stat-num">85</span>
+        <span class="stat-label">Specimens</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">5</span>
+        <span class="stat-label">Systems</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">14</span>
+        <span class="stat-label">Categories</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">CC</span>
+        <span class="stat-label">BY-NC-SA 4.0</span>
+      </div>
+    </div>
+
+    <a class="hero-scroll" href="#systems">
+      <div class="scroll-arrow">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      Browse Collections
+    </a>
+  </div>
+</section>
+
+<!-- ─── SYSTEMS ─── -->
+<section class="systems" id="systems">
+  <div class="section-header">
+    <div>
+      <p class="section-eyebrow">Organ Systems</p>
+      <h2 class="section-title">Browse the Collection</h2>
+    </div>
+    <p class="section-desc">Each system page includes high-resolution imagery, sub-category filtering, full-text search, and a lightbox viewer.</p>
+  </div>
+
+  <div class="systems-grid">
+
+    <!-- 01 Nervous System -->
+    <a class="sys-card" href="nervous-system-specimens.html">
+      <div class="sys-imgs">
+        <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f7b5470fefebfb5ad5b2e90_Brain%201.jpg" alt="" loading="lazy">
+        <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f96f59db77c4f1117733001_Full%20CNS%3APNS.png" alt="" loading="lazy">
+        <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f7b734d5d8c1e4ac15bf530_Coronal%20slices.jpg" alt="" loading="lazy">
+        <span class="sys-num-badge">01</span>
+      </div>
+      <div class="sys-body">
+        <h3 class="sys-name">Nervous System</h3>
+        <p class="sys-count"><span class="count-big">32</span>&nbsp;specimens</p>
+        <div class="sys-cats">
+          <span class="cat-chip" style="background:rgba(46,205,184,.12);color:#2ecdb8;border-color:rgba(46,205,184,.25)"><span class="cat-chip-dot" style="background:#2ecdb8"></span>Brain Anatomy</span>
+          <span class="cat-chip" style="background:rgba(232,149,71,.12);color:#e89547;border-color:rgba(232,149,71,.25)"><span class="cat-chip-dot" style="background:#e89547"></span>Pathological</span>
+          <span class="cat-chip" style="background:rgba(124,124,232,.12);color:#a8a8f4;border-color:rgba(124,124,232,.25)"><span class="cat-chip-dot" style="background:#7c7ce8"></span>Spine &amp; CNS</span>
+        </div>
+        <div class="sys-link">
+          View Collection
+          <span class="sys-link-arrow">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 02 Cardiovascular & Respiratory -->
+    <a class="sys-card" href="cardiovascular-respiratory-specimens.html">
+      <div class="sys-imgs">
+        <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/60c94a5f52e42231f8624fbf_cardiorespiratory%20bloc.png" alt="" loading="lazy">
+        <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f7bc0f9e2d68ba9fa09c24e_PLAX1.jpg" alt="" loading="lazy">
+        <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/64e5699a06340101577a3603_Bronchial%20Tree%20copy.jpg" alt="" loading="lazy">
+        <span class="sys-num-badge">02</span>
+      </div>
+      <div class="sys-body">
+        <h3 class="sys-name">Cardiovascular &amp; Respiratory</h3>
+        <p class="sys-count"><span class="count-big">28</span>&nbsp;specimens</p>
+        <div class="sys-cats">
+          <span class="cat-chip" style="background:rgba(232,92,110,.12);color:#e85c6e;border-color:rgba(232,92,110,.25)"><span class="cat-chip-dot" style="background:#e85c6e"></span>Heart Anatomy</span>
+          <span class="cat-chip" style="background:rgba(92,154,232,.12);color:#7cb4f0;border-color:rgba(92,154,232,.25)"><span class="cat-chip-dot" style="background:#5c9ae8"></span>Cross-Sections</span>
+          <span class="cat-chip" style="background:rgba(232,149,71,.12);color:#e89547;border-color:rgba(232,149,71,.25)"><span class="cat-chip-dot" style="background:#e89547"></span>Pathological</span>
+          <span class="cat-chip" style="background:rgba(92,213,176,.12);color:#5cd5b0;border-color:rgba(92,213,176,.25)"><span class="cat-chip-dot" style="background:#5cd5b0"></span>Respiratory</span>
+        </div>
+        <div class="sys-link">
+          View Collection
+          <span class="sys-link-arrow">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 03 Gastrointestinal -->
+    <a class="sys-card" href="gastrointestinal-specimens.html">
+      <div class="sys-imgs">
+        <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f85c59da25bf1c88b7a631d_Liver.jpg" alt="" loading="lazy">
+        <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/60c95f711bbfb411fb756048_full%20GI.png" alt="" loading="lazy">
+        <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f85cd8f952706f68c343602_Stomach.jpg" alt="" loading="lazy">
+        <span class="sys-num-badge">03</span>
+      </div>
+      <div class="sys-body">
+        <h3 class="sys-name">Gastrointestinal</h3>
+        <p class="sys-count"><span class="count-big">8</span>&nbsp;specimens</p>
+        <div class="sys-cats">
+          <span class="cat-chip" style="background:rgba(212,133,74,.12);color:#d4854a;border-color:rgba(212,133,74,.25)"><span class="cat-chip-dot" style="background:#d4854a"></span>Liver</span>
+          <span class="cat-chip" style="background:rgba(92,213,160,.12);color:#5cd5a0;border-color:rgba(92,213,160,.25)"><span class="cat-chip-dot" style="background:#5cd5a0"></span>GI Tract</span>
+        </div>
+        <div class="sys-link">
+          View Collection
+          <span class="sys-link-arrow">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 04 Genitourinary & Reproductive -->
+    <a class="sys-card" href="genitourinary-reproductive-specimens.html">
+      <div class="sys-imgs">
+        <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/60c960fa1226ae010c36c1cb_female%20GU_full%202.png" alt="" loading="lazy">
+        <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/60c960788518236b75cb83d7_male%20GU_full%20kidney.png" alt="" loading="lazy">
+        <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f85cb7ecfe5993fc2350a57_Kidney%20full.jpg" alt="" loading="lazy">
+        <span class="sys-num-badge">04</span>
+      </div>
+      <div class="sys-body">
+        <h3 class="sys-name">Genitourinary &amp; Reproductive</h3>
+        <p class="sys-count"><span class="count-big">14</span>&nbsp;specimens</p>
+        <div class="sys-cats">
+          <span class="cat-chip" style="background:rgba(92,154,232,.12);color:#7cb4f0;border-color:rgba(92,154,232,.25)"><span class="cat-chip-dot" style="background:#5c9ae8"></span>Male GU</span>
+          <span class="cat-chip" style="background:rgba(232,124,176,.12);color:#e87cb0;border-color:rgba(232,124,176,.25)"><span class="cat-chip-dot" style="background:#e87cb0"></span>Female GU</span>
+          <span class="cat-chip" style="background:rgba(92,213,200,.12);color:#5cd5c8;border-color:rgba(92,213,200,.25)"><span class="cat-chip-dot" style="background:#5cd5c8"></span>Kidney</span>
+        </div>
+        <div class="sys-link">
+          View Collection
+          <span class="sys-link-arrow">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 05 Lymphatic -->
+    <a class="sys-card" href="lymphatic-specimens.html">
+      <div class="sys-imgs">
+        <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/64e62eed4f53a4eec1ee5058_Spleen%20and%20Splenomegaly.jpg" alt="" loading="lazy">
+        <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/64e62f24a7d56667e9fd32d2_Cysts%2C%20Tumors%2C%20and%20Lymph%20Nodes.jpg" alt="" loading="lazy">
+        <span class="sys-num-badge">05</span>
+      </div>
+      <div class="sys-body">
+        <h3 class="sys-name">Lymphatic System</h3>
+        <p class="sys-count"><span class="count-big">3</span>&nbsp;specimens</p>
+        <div class="sys-cats">
+          <span class="cat-chip" style="background:rgba(155,124,232,.12);color:#c4aef6;border-color:rgba(155,124,232,.25)"><span class="cat-chip-dot" style="background:#9b7ce8"></span>Spleen</span>
+          <span class="cat-chip" style="background:rgba(92,213,160,.12);color:#5cd5a0;border-color:rgba(92,213,160,.25)"><span class="cat-chip-dot" style="background:#5cd5a0"></span>Lymph Nodes</span>
+        </div>
+        <div class="sys-link">
+          View Collection
+          <span class="sys-link-arrow">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section class="about">
+  <div class="about-inner">
+    <div>
+      <p class="about-label">About the Collection</p>
+      <h2 class="about-title">Advancing Anatomy<br>Through Preservation</h2>
+      <p class="about-text">Plastinated specimens are permanent anatomical preparations produced by replacing body fluids and fat with silicone or epoxy resins, resulting in odorless, durable, and highly detailed specimens. The Stabio Lab collection at CU Anschutz features 85 specimens spanning five major organ systems.</p>
+      <p class="about-text" style="margin-top:12px">These specimens are integrated into the Modern Human Anatomy Master's program curriculum — including Neuroanatomy and the Advanced Imaging and Modeling (AIM) Track — supporting hands-on anatomical study, pathological comparison, and direct correlation with medical imaging modalities such as CT, MRI, and ultrasound.</p>
+    </div>
+    <div class="about-meta">
+      <div class="meta-item">
+        <p class="meta-label">Institution</p>
+        <p class="meta-value">University of Colorado<br>Anschutz Medical Campus</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Program</p>
+        <p class="meta-value">Modern Human Anatomy<br>Master's Program</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Collection Director</p>
+        <p class="meta-value">Maureen Stabio, PhD</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Web Resource</p>
+        <p class="meta-value"><a href="https://www.anatomylibrary.org" target="_blank">anatomylibrary.org</a></p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">License</p>
+        <p class="meta-value">CC BY-NC-SA 4.0<br><span style="font-size:13px;color:var(--text-mid)">Non-commercial educational use</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <p>Images sourced from <a href="https://www.anatomylibrary.org" target="_blank">anatomylibrary.org</a> · 2100w resolution · Webflow CDN<br>
+  © The Stabio Lab · University of Colorado Anschutz Medical Campus</p>
+  <div class="footer-legend">
+    <span class="footer-sys">01 Nervous System — 32 specimens</span>
+    <span class="footer-sys">02 Cardiovascular &amp; Respiratory — 28 specimens</span>
+    <span class="footer-sys">03 Gastrointestinal — 8 specimens</span>
+    <span class="footer-sys">04 Genitourinary &amp; Reproductive — 14 specimens</span>
+    <span class="footer-sys">05 Lymphatic — 3 specimens</span>
+  </div>
+</footer>
+
+</body>
+</html>

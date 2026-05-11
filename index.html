@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern Human Anatomy — Open Educational Resources | CU Anschutz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080a12;--surface:#0d1021;--card:#0f1326;--border:#1c2040;--border-h:#2a305c;
+  --gold:#CFB87C;--gold-text:#2a1e08;--gold-bg:rgba(207,184,124,.08);--gold-bd:rgba(207,184,124,.18);
+  --gold-lite:rgba(207,184,124,.06);
+  --text:#d8dcf0;--text-dim:#6070a8;--text-mid:#9098c0;
+  --font-serif:'Cormorant Garamond',Georgia,serif;
+  --font-sans:'Barlow',system-ui,sans-serif;
+  --font-cond:'Barlow Condensed','Barlow',system-ui,sans-serif;
+  --font-mono:'Fira Code',monospace;
+  --ease:220ms cubic-bezier(.25,.46,.45,.94);
+  --ease-spring:400ms cubic-bezier(.22,.68,0,1.2);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.5}
+
+/* ─── INSTITUTIONAL TOP BAR ─── */
+.top-bar{background:rgba(207,184,124,.07);border-bottom:1px solid var(--gold-bd);padding:0 40px;height:36px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.top-bar-left{display:flex;align-items:center;gap:14px}
+.cu-logo-mark{width:20px;height:20px;flex-shrink:0}
+.top-bar-inst{font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+.top-bar-divider{width:1px;height:14px;background:var(--gold-bd)}
+.top-bar-prog{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);white-space:nowrap}
+.top-bar-right{font-family:var(--font-mono);font-size:10px;color:var(--text-dim);letter-spacing:.06em}
+
+/* ─── NAV ─── */
+.site-nav{background:rgba(8,10,18,.95);border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;height:52px;position:sticky;top:0;z-index:50;backdrop-filter:blur(16px)}
+.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
+.nav-brand-acronym{font-family:var(--font-cond);font-size:18px;font-weight:600;letter-spacing:.08em;color:var(--gold);line-height:1}
+.nav-brand-sep{width:1px;height:20px;background:var(--border-h)}
+.nav-brand-text{display:flex;flex-direction:column;gap:1px}
+.nav-brand-title{font-family:var(--font-sans);font-size:12px;font-weight:600;color:var(--text);line-height:1}
+.nav-brand-sub{font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);line-height:1}
+.nav-links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{font-size:12px;font-weight:500;color:var(--text-dim);text-decoration:none;padding:5px 12px;border-radius:4px;white-space:nowrap;transition:var(--ease)}
+.nav-links a:hover{color:var(--text);background:rgba(255,255,255,.05)}
+.nav-cta{font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:.06em;padding:6px 14px;border-radius:6px;background:var(--gold-bg);border:1px solid var(--gold-bd);color:var(--gold);text-decoration:none;white-space:nowrap;transition:var(--ease);flex-shrink:0}
+.nav-cta:hover{background:var(--gold);color:var(--gold-text)}
+
+/* ─── HERO ─── */
+.hero{position:relative;min-height:520px;display:flex;align-items:center;border-bottom:1px solid var(--border);overflow:hidden}
+
+/* Diagonal accent line */
+.hero-accent{position:absolute;right:0;top:0;bottom:0;width:45%;background:linear-gradient(135deg,transparent 0%,rgba(207,184,124,.03) 50%,rgba(207,184,124,.06) 100%);border-left:1px solid var(--border);clip-path:polygon(8% 0,100% 0,100% 100%,0% 100%)}
+
+/* Hero grid mosaic */
+.hero-mosaic{position:absolute;right:0;top:0;bottom:0;width:42%;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);gap:3px;opacity:.14;filter:saturate(.5) brightness(.85);pointer-events:none;clip-path:polygon(8% 0,100% 0,100% 100%,0% 100%)}
+.hero-mosaic img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Fade over mosaic */
+.hero-mosaic-fade{position:absolute;right:0;top:0;bottom:0;width:46%;background:linear-gradient(90deg,var(--bg) 0%,rgba(8,10,18,.4) 40%,rgba(8,10,18,.1) 100%);pointer-events:none}
+
+.hero-content{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:72px 40px;width:100%;max-width:800px}
+.hero-eyebrow{font-family:var(--font-mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--gold)}
+
+h1.hero-title{font-family:var(--font-serif);font-size:clamp(48px,7vw,92px);font-weight:400;letter-spacing:-.03em;line-height:.92;color:#f0f2ff;margin-bottom:10px}
+h1.hero-title .line-dim{color:var(--text-mid);font-weight:300}
+h1.hero-title em{font-style:italic;color:var(--gold)}
+
+.hero-tagline{font-family:var(--font-cond);font-size:clamp(16px,2vw,22px);font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);margin-bottom:24px;padding-left:2px}
+
+.hero-desc{font-size:15px;font-weight:300;color:var(--text-mid);max-width:520px;line-height:1.7;margin-bottom:44px}
+
+/* Stats */
+.hero-stats{display:inline-flex;gap:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:rgba(13,16,33,.65);backdrop-filter:blur(8px)}
+.hero-stat{padding:14px 24px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:3px}
+.hero-stat:last-child{border-right:none}
+.stat-num{font-family:var(--font-serif);font-size:32px;font-weight:500;color:var(--gold);line-height:1}
+.stat-label{font-family:var(--font-mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim)}
+
+/* ─── RESOURCES SECTION ─── */
+.resources{padding:72px 40px 80px;max-width:1400px;margin:0 auto}
+.resources-header{margin-bottom:40px;display:grid;grid-template-columns:1fr auto;align-items:end;gap:24px}
+.resources-eyebrow{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.resources-eyebrow::before{content:'';width:20px;height:1px;background:var(--gold)}
+h2.resources-title{font-family:var(--font-serif);font-size:clamp(30px,4vw,48px);font-weight:400;letter-spacing:-.02em;color:#eef0fa;line-height:1}
+.resources-subtitle{font-size:13px;color:var(--text-dim);line-height:1.6;max-width:300px;text-align:right}
+.resources-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+
+/* ─── RESOURCE CARD ─── */
+.res-card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit;position:relative;transition:transform var(--ease),border-color var(--ease),box-shadow var(--ease);animation:cardIn 500ms cubic-bezier(.22,.68,0,1.1) both}
+.res-card:nth-child(1){animation-delay:0ms}
+.res-card:nth-child(2){animation-delay:100ms}
+.res-card:nth-child(3){animation-delay:200ms}
+.res-card:nth-child(4){animation-delay:300ms}
+@keyframes cardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.res-card.live:hover{transform:translateY(-5px);border-color:var(--gold-bd);box-shadow:0 24px 64px rgba(0,0,0,.6),0 0 0 1px var(--gold-bg)}
+.res-card.soon:hover{transform:translateY(-3px);border-color:var(--border-h);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+
+/* Card visual header */
+.res-header{height:180px;position:relative;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+
+/* Live card (Plastinated Library) — specimen mosaic */
+.res-header-mosaic{position:absolute;inset:0;display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(2,1fr);gap:2px;opacity:.28;filter:saturate(.6) brightness(.8)}
+.res-header-mosaic img{width:100%;height:100%;object-fit:cover;display:block}
+.res-header-mosaic-fade{position:absolute;inset:0;background:linear-gradient(135deg,rgba(8,10,20,.9) 0%,rgba(8,10,20,.5) 100%)}
+
+/* Icon cards (coming soon) */
+.res-header-icon{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;width:72px;height:72px}
+.res-header-icon svg{width:100%;height:100%}
+.res-header-glow{position:absolute;inset:-40px;border-radius:50%;opacity:.12;filter:blur(30px)}
+
+/* Number badge */
+.res-number{position:absolute;top:14px;left:14px;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.5);background:rgba(0,0,0,.5);backdrop-filter:blur(4px);padding:3px 8px;border-radius:5px;z-index:2}
+
+/* Status badge */
+.res-status{position:absolute;top:14px;right:14px;font-family:var(--font-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:100px;z-index:2}
+.res-status.live{background:rgba(207,184,124,.15);color:var(--gold);border:1px solid var(--gold-bd)}
+.res-status.soon{background:rgba(255,255,255,.06);color:var(--text-dim);border:1px solid var(--border-h)}
+
+/* Card body */
+.res-body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
+.res-category{font-family:var(--font-mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px}
+.res-name{font-family:var(--font-serif);font-size:22px;font-weight:500;color:#eef0fa;line-height:1.2;margin-bottom:12px}
+.res-desc{font-size:13px;font-weight:300;color:var(--text-mid);line-height:1.7;margin-bottom:18px;flex:1}
+
+/* Tag chips */
+.res-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.res-tag{font-family:var(--font-mono);font-size:9px;letter-spacing:.08em;padding:3px 9px;border-radius:4px;border:1px solid var(--border-h);color:var(--text-dim);background:rgba(255,255,255,.03)}
+
+/* CTA */
+.res-cta{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--border)}
+.res-cta-text{font-size:12px;font-weight:600;letter-spacing:.04em}
+.res-cta-icon{width:32px;height:32px;border-radius:50%;border:1px solid;display:flex;align-items:center;justify-content:center;transition:var(--ease);flex-shrink:0}
+
+/* Live card CTA */
+.res-card.live .res-cta-text{color:var(--gold)}
+.res-card.live .res-cta-icon{border-color:var(--gold-bd);background:var(--gold-bg)}
+.res-card.live:hover .res-cta-icon{background:var(--gold);border-color:var(--gold)}
+.res-card.live:hover .res-cta-icon svg{stroke:#2a1e08}
+
+/* Soon card CTA */
+.res-card.soon .res-cta-text{color:var(--text-dim)}
+.res-card.soon .res-cta-icon{border-color:var(--border-h);background:transparent;opacity:.5}
+
+/* ─── ABOUT OER ─── */
+.about{border-top:1px solid var(--border);background:linear-gradient(180deg,rgba(13,16,33,.5) 0%,transparent 100%)}
+.about-inner{max-width:1400px;margin:0 auto;padding:72px 40px;display:grid;grid-template-columns:1fr 1.2fr;gap:72px;align-items:start}
+
+.about-left .eyebrow{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.about-left .eyebrow::before{content:'';width:20px;height:1px;background:var(--gold)}
+.about-h2{font-family:var(--font-serif);font-size:clamp(26px,3.5vw,40px);font-weight:400;line-height:1.1;color:#eef0fa;margin-bottom:20px}
+.about-h2 em{font-style:italic;color:var(--gold)}
+.about-body{font-size:14px;font-weight:300;color:var(--text-mid);line-height:1.8}
+.about-body+.about-body{margin-top:14px}
+
+/* Pillars grid */
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pillar{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:20px;transition:var(--ease)}
+.pillar:hover{border-color:var(--border-h)}
+.pillar-icon{width:28px;height:28px;margin-bottom:12px}
+.pillar-title{font-family:var(--font-cond);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text);margin-bottom:6px}
+.pillar-text{font-size:12px;font-weight:300;color:var(--text-dim);line-height:1.6}
+
+/* ─── FOOTER ─── */
+footer{border-top:1px solid var(--border);padding:24px 40px}
+.footer-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.footer-brand{font-family:var(--font-cond);font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--gold)}
+.footer-meta{font-size:11px;color:var(--text-dim);line-height:1.6}
+.footer-meta a{color:var(--gold);text-decoration:none}
+.footer-links{display:flex;gap:16px}
+.footer-links a{font-size:11px;color:var(--text-dim);text-decoration:none;font-family:var(--font-mono);transition:var(--ease)}
+.footer-links a:hover{color:var(--gold)}
+
+/* Responsive */
+@media(max-width:960px){
+  .resources-grid{grid-template-columns:1fr}
+  .about-inner{grid-template-columns:1fr;gap:40px}
+  .resources-header{grid-template-columns:1fr}
+  .resources-subtitle{text-align:left}
+  .hero-mosaic,.hero-mosaic-fade,.hero-accent{display:none}
+}
+@media(max-width:600px){
+  .top-bar,.site-nav,.resources,.about-inner,footer{padding-left:16px;padding-right:16px}
+  .hero-content{padding:48px 16px}
+  h1.hero-title{font-size:clamp(40px,12vw,60px)}
+  .hero-stats{flex-wrap:wrap}
+  .hero-stat{padding:10px 18px}
+  .top-bar-right,.nav-links{display:none}
+  .pillars{grid-template-columns:1fr}
+  .res-header{height:140px}
+}
+</style>
+</head>
+<body>
+
+<!-- ─── INSTITUTIONAL TOP BAR ─── -->
+<div class="top-bar">
+  <div class="top-bar-left">
+    <!-- CU Anschutz shield-esque mark -->
+    <svg class="cu-logo-mark" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 1L2 4.5V10C2 14.2 5.6 17.8 10 19C14.4 17.8 18 14.2 18 10V4.5L10 1Z" stroke="#CFB87C" stroke-width="1.2" fill="none"/>
+      <path d="M7 10C7 8.3 8.3 7 10 7C11.7 7 13 8.3 13 10" stroke="#CFB87C" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      <circle cx="10" cy="12" r="1.2" fill="#CFB87C"/>
+    </svg>
+    <span class="top-bar-inst">University of Colorado — Anschutz Medical Campus</span>
+    <div class="top-bar-divider"></div>
+    <span class="top-bar-prog">Modern Human Anatomy Program</span>
+  </div>
+  <span class="top-bar-right">OER · Open Educational Resources</span>
+</div>
+
+<!-- ─── NAV ─── -->
+<nav class="site-nav">
+  <a href="#" class="nav-brand">
+    <span class="nav-brand-acronym">MHA</span>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-text">
+      <span class="nav-brand-title">Open Educational Resources</span>
+      <span class="nav-brand-sub">CU Anschutz</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="cu-organ-home.html">Plastinated Organ Library</a>
+    <a href="#">3D Printed Models</a>
+    <a href="#">Medical Datasets</a>
+    <a href="#">Educational Models</a>
+  </div>
+  <a href="cu-organ-home.html" class="nav-cta">Browse Collection →</a>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <!-- Right-side image mosaic -->
+  <div class="hero-mosaic" aria-hidden="true">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f7b5470fefebfb5ad5b2e90_Brain%201.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/60c94a5f52e42231f8624fbf_cardiorespiratory%20bloc.png" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f85c59da25bf1c88b7a631d_Liver.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f7bc0f9e2d68ba9fa09c24e_PLAX1.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f96f59db77c4f1117733001_Full%20CNS%3APNS.png" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/60c960fa1226ae010c36c1cb_female%20GU_full%202.png" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/64e5699a06340101577a3603_Bronchial%20Tree%20copy.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f85cb7ecfe5993fc2350a57_Kidney%20full.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/64e62eed4f53a4eec1ee5058_Spleen%20and%20Splenomegaly.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f7b734d5d8c1e4ac15bf530_Coronal%20slices.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f7bb8b0efb8490975d6c22a_Heart%201.jpg" alt="" loading="lazy">
+    <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/672e8ad937a6c92609a4b0ed_IMG_4426%20Edited%20copy.jpg" alt="" loading="lazy">
+  </div>
+  <div class="hero-mosaic-fade"></div>
+  <div class="hero-accent"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Open Educational Resources</p>
+    <h1 class="hero-title">
+      <span class="line-dim">Modern</span><br>
+      Human <em>Anatomy</em>
+    </h1>
+    <p class="hero-tagline">CU Anschutz · MHA Program</p>
+    <p class="hero-desc">A free, openly licensed suite of anatomy education resources developed by the Modern Human Anatomy Program at the University of Colorado Anschutz Medical Campus — spanning physical specimens, 3D-printed models, medical imaging datasets, and interactive digital visualizations.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="stat-num">4</span>
+        <span class="stat-label">Resource Types</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">85+</span>
+        <span class="stat-label">Specimens</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">CC</span>
+        <span class="stat-label">BY-NC-SA 4.0</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── RESOURCES ─── -->
+<section class="resources" id="resources">
+  <div class="resources-header">
+    <div>
+      <p class="resources-eyebrow">OER Collections</p>
+      <h2 class="resources-title">Explore the Resources</h2>
+    </div>
+    <p class="resources-subtitle">One collection is live now. Three additional resource libraries are in active development.</p>
+  </div>
+
+  <div class="resources-grid">
+
+    <!-- ── LIVE: Plastinated Organ Library ── -->
+    <a class="res-card live" href="cu-organ-home.html">
+      <div class="res-header">
+        <!-- Specimen mosaic background -->
+        <div class="res-header-mosaic">
+          <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f7b5470fefebfb5ad5b2e90_Brain%201.jpg" alt="" loading="lazy">
+          <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/60c94a5f52e42231f8624fbf_cardiorespiratory%20bloc.png" alt="" loading="lazy">
+          <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f85c59da25bf1c88b7a631d_Liver.jpg" alt="" loading="lazy">
+          <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/60c960fa1226ae010c36c1cb_female%20GU_full%202.png" alt="" loading="lazy">
+          <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/64e62eed4f53a4eec1ee5058_Spleen%20and%20Splenomegaly.jpg" alt="" loading="lazy">
+          <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f96f59db77c4f1117733001_Full%20CNS%3APNS.png" alt="" loading="lazy">
+          <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f7bc0f9e2d68ba9fa09c24e_PLAX1.jpg" alt="" loading="lazy">
+          <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f85cb7ecfe5993fc2350a57_Kidney%20full.jpg" alt="" loading="lazy">
+          <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/64e5699a06340101577a3603_Bronchial%20Tree%20copy.jpg" alt="" loading="lazy">
+          <img src="https://cdn.prod.website-files.com/5f591f399296f3f25c887582/5f7b734d5d8c1e4ac15bf530_Coronal%20slices.jpg" alt="" loading="lazy">
+        </div>
+        <div class="res-header-mosaic-fade"></div>
+        <!-- Overlay title on image -->
+        <div style="position:relative;z-index:1;text-align:center;padding:0 20px">
+          <p style="font-family:var(--font-mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:6px">Available Now</p>
+          <p style="font-family:var(--font-serif);font-size:28px;font-weight:500;color:#f0f2ff;line-height:1">85 Specimens<br><em style="color:var(--gold);font-size:22px">5 Organ Systems</em></p>
+        </div>
+        <span class="res-number">01</span>
+        <span class="res-status live">● Live</span>
+      </div>
+      <div class="res-body">
+        <p class="res-category" style="color:var(--gold)">Physical Specimens</p>
+        <h3 class="res-name">CU Plastinated Organ Library</h3>
+        <p class="res-desc">A curated collection of 85 plastinated anatomical preparations spanning five major organ systems — Nervous, Cardiovascular &amp; Respiratory, Gastrointestinal, Genitourinary &amp; Reproductive, and Lymphatic. High-resolution photography with interactive gallery, sub-category filtering, and lightbox viewer.</p>
+        <div class="res-tags">
+          <span class="res-tag" style="border-color:rgba(207,184,124,.25);color:var(--gold)">85 Specimens</span>
+          <span class="res-tag" style="border-color:rgba(207,184,124,.25);color:var(--gold)">5 Systems</span>
+          <span class="res-tag">Plastination</span>
+          <span class="res-tag">CC BY-NC-SA</span>
+        </div>
+        <div class="res-cta">
+          <span class="res-cta-text">Browse the Collection</span>
+          <span class="res-cta-icon" style="border-color:var(--gold-bd);background:var(--gold-bg)">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#CFB87C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- ── COMING SOON: 3D Printed Models ── -->
+    <a class="res-card soon" href="#" onclick="return false;">
+      <div class="res-header" style="background:linear-gradient(135deg,#120e2e 0%,#0d0a1e 100%)">
+        <div class="res-header-glow" style="background:#8b7de8"></div>
+        <div class="res-header-icon">
+          <!-- 3D cube SVG icon -->
+          <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="36,8 62,22 62,50 36,64 10,50 10,22" stroke="#9b7ce8" stroke-width="1.5" fill="rgba(155,124,232,.08)"/>
+            <polyline points="36,8 36,36" stroke="#9b7ce8" stroke-width="1.2" stroke-dasharray="3 3" opacity=".6"/>
+            <polyline points="10,22 36,36" stroke="#9b7ce8" stroke-width="1.2" stroke-dasharray="3 3" opacity=".6"/>
+            <polyline points="62,22 36,36" stroke="#9b7ce8" stroke-width="1.2" stroke-dasharray="3 3" opacity=".6"/>
+            <circle cx="36" cy="36" r="3" fill="#9b7ce8" opacity=".8"/>
+            <circle cx="36" cy="8" r="2.5" fill="#9b7ce8" opacity=".5"/>
+            <circle cx="62" cy="22" r="2.5" fill="#9b7ce8" opacity=".5"/>
+            <circle cx="10" cy="22" r="2.5" fill="#9b7ce8" opacity=".5"/>
+            <!-- Grid dots on face -->
+            <circle cx="48" cy="16" r="1.2" fill="#9b7ce8" opacity=".3"/>
+            <circle cx="24" cy="16" r="1.2" fill="#9b7ce8" opacity=".3"/>
+            <circle cx="18" cy="36" r="1.2" fill="#9b7ce8" opacity=".3"/>
+          </svg>
+        </div>
+        <span class="res-number">02</span>
+        <span class="res-status soon">Coming Soon</span>
+      </div>
+      <div class="res-body">
+        <p class="res-category" style="color:#9b7ce8">Physical Models</p>
+        <h3 class="res-name">3D Printed Anatomical Models</h3>
+        <p class="res-desc">Anatomically accurate, curriculum-aligned 3D-printable models developed for the MHA Program. Download STL and source files spanning multiple organ systems, including both normal anatomy and pathological variants, optimized for FDM and resin printers.</p>
+        <div class="res-tags">
+          <span class="res-tag">STL Files</span>
+          <span class="res-tag">FDM · Resin</span>
+          <span class="res-tag">Multi-System</span>
+          <span class="res-tag">CC BY-NC-SA</span>
+        </div>
+        <div class="res-cta">
+          <span class="res-cta-text">In Development</span>
+          <span class="res-cta-icon" style="border-color:var(--border-h)">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- ── COMING SOON: Medical Datasets ── -->
+    <a class="res-card soon" href="#" onclick="return false;">
+      <div class="res-header" style="background:linear-gradient(135deg,#0a1228 0%,#080e1e 100%)">
+        <div class="res-header-glow" style="background:#5c8de8"></div>
+        <div class="res-header-icon">
+          <!-- CT scan / stacked slices icon -->
+          <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Stacked horizontal slices -->
+            <rect x="12" y="50" width="48" height="8" rx="2" stroke="#5c9ae8" stroke-width="1.4" fill="rgba(92,154,232,.08)"/>
+            <rect x="12" y="38" width="48" height="8" rx="2" stroke="#5c9ae8" stroke-width="1.4" fill="rgba(92,154,232,.1)"/>
+            <rect x="12" y="26" width="48" height="8" rx="2" stroke="#5c9ae8" stroke-width="1.4" fill="rgba(92,154,232,.12)"/>
+            <rect x="12" y="14" width="48" height="8" rx="2" stroke="#7cb4f0" stroke-width="1.4" fill="rgba(92,154,232,.15)"/>
+            <!-- Scan lines on top slice -->
+            <line x1="20" y1="18" x2="52" y2="18" stroke="#7cb4f0" stroke-width="0.8" opacity=".6"/>
+            <line x1="20" y1="20" x2="52" y2="20" stroke="#7cb4f0" stroke-width="0.8" opacity=".4"/>
+            <!-- Crosshair on middle slice -->
+            <line x1="36" y1="37" x2="36" y2="47" stroke="#5c9ae8" stroke-width="0.8" stroke-dasharray="2 2" opacity=".5"/>
+            <line x1="26" y1="42" x2="46" y2="42" stroke="#5c9ae8" stroke-width="0.8" stroke-dasharray="2 2" opacity=".5"/>
+            <circle cx="36" cy="42" r="3" stroke="#7cb4f0" stroke-width="1" fill="none" opacity=".6"/>
+          </svg>
+        </div>
+        <span class="res-number">03</span>
+        <span class="res-status soon">Coming Soon</span>
+      </div>
+      <div class="res-body">
+        <p class="res-category" style="color:#5c9ae8">Imaging Datasets</p>
+        <h3 class="res-name">Medical Imaging Datasets</h3>
+        <p class="res-desc">Curated, de-identified CT and MRI datasets organized by body region, pathology, and imaging modality. Formatted for use with 3D Slicer, MATLAB Medical Imaging Toolbox, MONAI, and standard DICOM viewers. Ideal for segmentation and AI model training.</p>
+        <div class="res-tags">
+          <span class="res-tag">CT</span>
+          <span class="res-tag">MRI</span>
+          <span class="res-tag">DICOM</span>
+          <span class="res-tag">3D Slicer</span>
+          <span class="res-tag">MONAI</span>
+        </div>
+        <div class="res-cta">
+          <span class="res-cta-text">In Development</span>
+          <span class="res-cta-icon" style="border-color:var(--border-h)">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- ── COMING SOON: Educational Models ── -->
+    <a class="res-card soon" href="#" onclick="return false;">
+      <div class="res-header" style="background:linear-gradient(135deg,#0a1e14 0%,#070f0b 100%)">
+        <div class="res-header-glow" style="background:#5cd08a"></div>
+        <div class="res-header-icon">
+          <!-- Monitor / digital model icon -->
+          <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Monitor frame -->
+            <rect x="10" y="14" width="52" height="34" rx="3" stroke="#5cd08a" stroke-width="1.5" fill="rgba(92,208,138,.06)"/>
+            <!-- Screen interior lines suggesting a 3D model -->
+            <polyline points="22,38 30,24 36,32 42,20 50,38" stroke="#7ce8a8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <!-- Grid lines subtle -->
+            <line x1="10" y1="34" x2="62" y2="34" stroke="#5cd08a" stroke-width=".6" opacity=".2"/>
+            <!-- Stand -->
+            <line x1="36" y1="48" x2="36" y2="56" stroke="#5cd08a" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="26" y1="56" x2="46" y2="56" stroke="#5cd08a" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Data dots -->
+            <circle cx="22" cy="38" r="2" fill="#5cd08a" opacity=".7"/>
+            <circle cx="30" cy="24" r="2" fill="#7ce8a8" opacity=".8"/>
+            <circle cx="36" cy="32" r="2" fill="#5cd08a" opacity=".7"/>
+            <circle cx="42" cy="20" r="2" fill="#7ce8a8" opacity=".8"/>
+            <circle cx="50" cy="38" r="2" fill="#5cd08a" opacity=".7"/>
+          </svg>
+        </div>
+        <span class="res-number">04</span>
+        <span class="res-status soon">Coming Soon</span>
+      </div>
+      <div class="res-body">
+        <p class="res-category" style="color:#5cd08a">Digital Resources</p>
+        <h3 class="res-name">Educational Models &amp; Visualizations</h3>
+        <p class="res-desc">Interactive 3D models, annotated imaging atlases, Verge3D interactive viewers, and curriculum-aligned digital learning resources for anatomy education. Includes Sketchfab-hosted models and structured teaching cases developed for MHA coursework.</p>
+        <div class="res-tags">
+          <span class="res-tag">Verge3D</span>
+          <span class="res-tag">Sketchfab</span>
+          <span class="res-tag">Interactive</span>
+          <span class="res-tag">Curriculum-Aligned</span>
+        </div>
+        <div class="res-cta">
+          <span class="res-cta-text">In Development</span>
+          <span class="res-cta-icon" style="border-color:var(--border-h)">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ─── ABOUT OER ─── -->
+<section class="about">
+  <div class="about-inner">
+    <div class="about-left">
+      <p class="eyebrow">Our Mission</p>
+      <h2 class="about-h2">Anatomy Education,<br><em>Open to All</em></h2>
+      <p class="about-body">The Modern Human Anatomy Open Educational Resources initiative is a commitment to making high-quality anatomical teaching materials freely available to educators, students, and researchers under Creative Commons licensing.</p>
+      <p class="about-body">Developed within the MHA Master's Program at the University of Colorado Anschutz Medical Campus, these resources reflect the program's integration of traditional gross anatomy with advanced computational tools — including 3D Slicer, MATLAB, TotalSegmentator, Cellpose, and MONAI.</p>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <svg class="pillar-icon" viewBox="0 0 28 28" fill="none"><rect x="3" y="3" width="22" height="22" rx="3" stroke="#CFB87C" stroke-width="1.2"/><path d="M8 14h12M14 8v12" stroke="#CFB87C" stroke-width="1.2" stroke-linecap="round"/></svg>
+        <p class="pillar-title">Open Access</p>
+        <p class="pillar-text">All resources are released under Creative Commons BY-NC-SA 4.0, freely available for educational and research use.</p>
+      </div>
+      <div class="pillar">
+        <svg class="pillar-icon" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="10" stroke="#5c9ae8" stroke-width="1.2"/><path d="M9 14c0-2.8 2.2-5 5-5s5 2.2 5 5" stroke="#5c9ae8" stroke-width="1.2" stroke-linecap="round"/><circle cx="14" cy="17" r="1.5" fill="#5c9ae8"/></svg>
+        <p class="pillar-title">Multi-Modal</p>
+        <p class="pillar-text">Physical specimens, 3D prints, imaging datasets, and digital models — covering the full spectrum of modern anatomy tools.</p>
+      </div>
+      <div class="pillar">
+        <svg class="pillar-icon" viewBox="0 0 28 28" fill="none"><path d="M5 20L14 8l9 12H5z" stroke="#5cd08a" stroke-width="1.2" stroke-linejoin="round"/><path d="M10 20l4-6 4 6" stroke="#5cd08a" stroke-width="1.2" stroke-linejoin="round" opacity=".5"/></svg>
+        <p class="pillar-title">Curriculum-Aligned</p>
+        <p class="pillar-text">Resources are developed in direct support of MHA program coursework, including neuroanatomy and the AIM Track.</p>
+      </div>
+      <div class="pillar">
+        <svg class="pillar-icon" viewBox="0 0 28 28" fill="none"><rect x="4" y="8" width="20" height="14" rx="2" stroke="#9b7ce8" stroke-width="1.2"/><path d="M10 8V6a2 2 0 014 0v2" stroke="#9b7ce8" stroke-width="1.2" stroke-linecap="round"/><circle cx="14" cy="15" r="2" stroke="#9b7ce8" stroke-width="1.2"/></svg>
+        <p class="pillar-title">Peer-Developed</p>
+        <p class="pillar-text">Created and reviewed by faculty and students of the MHA Program, ensuring anatomical accuracy and pedagogical relevance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <p class="footer-brand">MHA Open Educational Resources</p>
+      <p class="footer-meta">
+        University of Colorado Anschutz Medical Campus · Modern Human Anatomy Program<br>
+        <a href="https://www.anatomylibrary.org" target="_blank">anatomylibrary.org</a> · CC BY-NC-SA 4.0
+      </p>
+    </div>
+    <div class="footer-links">
+      <a href="cu-organ-home.html">Plastinated Organ Library</a>
+      <a href="#">3D Printed Models</a>
+      <a href="#">Medical Datasets</a>
+      <a href="#">Educational Models</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
