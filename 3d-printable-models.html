@@ -147,6 +147,13 @@ footer{border-top:1px solid var(--border);padding:20px 40px}
 .footer-links a{font-size:11px;color:var(--text-dim);text-decoration:none;font-family:var(--font-mono);transition:var(--ease)}
 .footer-links a:hover{color:var(--gold)}
 
+/* ─── STUDENT SECTION DIVIDER ─── */
+.section-divider{grid-column:1/-1;padding:12px 0 8px;border-bottom:1px solid var(--border);margin-top:8px;margin-bottom:4px;display:flex;align-items:center;gap:12px}
+.section-divider-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim)}
+.section-divider-badge{font-family:var(--font-mono);font-size:9px;padding:3px 10px;border-radius:100px;background:rgba(168,126,212,.1);border:1px solid rgba(168,126,212,.25);color:#c4a0e8;letter-spacing:.08em;text-transform:uppercase}
+.filter-btn[data-sys="student"].active{background:#a87ed4;border-color:#a87ed4;color:#1a0a2a}
+.filter-btn[data-sys="digestive"].active{background:#e8a35c;border-color:#e8a35c;color:#2a1600}
+
 /* Responsive */
 @media(max-width:900px){.models-grid{grid-template-columns:1fr}}
 @media(max-width:600px){
@@ -158,6 +165,21 @@ footer{border-top:1px solid var(--border);padding:20px 40px}
   .top-bar-right{display:none}
   .nav-links{display:none}
 }
+
+/* ─── MOBILE NAV ─── */
+.nav-hamburger{display:none;align-items:center;justify-content:center;flex-direction:column;gap:5px;width:36px;height:36px;background:transparent;border:1px solid var(--border-h);border-radius:6px;cursor:pointer;padding:8px;margin-left:auto;flex-shrink:0}
+.nav-hamburger:hover{border-color:var(--gold-bd);background:var(--gold-bg)}
+.nav-hamburger span{display:block;width:16px;height:1.5px;background:var(--text-mid);border-radius:2px;transition:transform 220ms ease,opacity 180ms ease}
+.nav-hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);background:var(--gold)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);background:var(--gold)}
+.nav-mobile{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(8,10,18,.98);border-bottom:1px solid var(--border);backdrop-filter:blur(16px);flex-direction:column}
+.nav-mobile.open{display:flex}
+.nav-mobile a{font-size:13px;font-weight:500;color:var(--text-dim);text-decoration:none;padding:13px 20px;border-bottom:1px solid var(--border);transition:color var(--ease),background var(--ease)}
+.nav-mobile a:last-child{border-bottom:none}
+.nav-mobile a:hover{color:var(--text);background:rgba(255,255,255,.04)}
+.nav-mobile a.active{color:var(--gold);background:var(--gold-bg)}
+@media(max-width:768px){.nav-hamburger{display:flex}.nav-links{display:none}}
 </style>
 </head>
 <body>
@@ -188,6 +210,15 @@ footer{border-top:1px solid var(--border);padding:20px 40px}
     <a href="#">Medical Datasets</a>
     <a href="#">Educational Modules</a>
   </div>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-mobile" id="navMobile">
+    <a href="cu-organ-home.html">Plastinated Organ Library</a>
+    <a href="3d-printable-models.html" class="active">3D Printable Models</a>
+    <a href="#">Medical Datasets</a>
+    <a href="#">Educational Modules</a>
+  </div>
 </nav>
 
 <!-- ─── HEADER ─── -->
@@ -206,11 +237,11 @@ footer{border-top:1px solid var(--border);padding:20px 40px}
       </div>
       <div class="header-stats">
         <div class="hstat">
-          <span class="hstat-num">4</span>
+          <span class="hstat-num">28</span>
           <span class="hstat-label">Models</span>
         </div>
         <div class="hstat">
-          <span class="hstat-num">3</span>
+          <span class="hstat-num">4</span>
           <span class="hstat-label">Systems</span>
         </div>
         <div class="hstat">
@@ -236,6 +267,8 @@ footer{border-top:1px solid var(--border);padding:20px 40px}
   <button class="filter-btn" data-sys="nervous">Nervous System</button>
   <button class="filter-btn" data-sys="cardiovascular">Cardiovascular</button>
   <button class="filter-btn" data-sys="respiratory">Respiratory</button>
+  <button class="filter-btn" data-sys="digestive">Digestive</button>
+  <button class="filter-btn" data-sys="student">Student Work</button>
   <span class="results-info" id="results-info"></span>
 </div>
 
@@ -447,6 +480,842 @@ footer{border-top:1px solid var(--border);padding:20px 40px}
       </div>
     </div>
 
+    <!-- ── PLASTINATION LIBRARY SECTION DIVIDER ── -->
+    <div class="section-divider">
+      <span class="section-divider-label">CU Anschutz Plastination Library</span>
+      <span class="section-divider-badge">3D Scans</span>
+    </div>
+
+    <!-- ── MODEL 13: Liver ── -->
+    <div class="model-card" data-sys="digestive">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-13">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe title="Liver" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/b1163b5421194d76a467059eb52a3611/embed" onload="document.getElementById('ph-13').classList.add('loaded')"></iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(232,163,92,.12);color:#e8a35c;border-color:rgba(232,163,92,.25)">
+          <span class="sys-dot" style="background:#e8a35c"></span>Digestive
+        </span>
+        <h2 class="card-title">Liver</h2>
+        <div class="card-meta">
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>CU Modern Human Anatomy Program</span>
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>3D scan — Steven Summers</span>
+        </div>
+        <p class="card-desc">CT scan of a human liver from the CU Anschutz Plastination Library. The liver is the body's largest solid organ, responsible for metabolism, detoxification, and bile production. Scanned by Steven Summers. Derived from a body donor through the State Anatomical Board of Colorado.</p>
+        <div class="card-footer">
+          <span class="card-source"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Sketchfab</span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/liver-b1163b5421194d76a467059eb52a3611" target="_blank" rel="nofollow noopener">View on Sketchfab<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 14: Brain Left Hemisphere ── -->
+    <div class="model-card" data-sys="nervous">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-14">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe title="Brain Left Hemisphere" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/a3dd54a94e754fdd80063ed694356ac3/embed" onload="document.getElementById('ph-14').classList.add('loaded')"></iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(46,205,184,.12);color:#2ecdb8;border-color:rgba(46,205,184,.25)">
+          <span class="sys-dot" style="background:#2ecdb8"></span>Nervous System
+        </span>
+        <h2 class="card-title">Brain Left Hemisphere</h2>
+        <div class="card-meta">
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>CU Modern Human Anatomy Program</span>
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>3D scan from plastinated specimen</span>
+        </div>
+        <p class="card-desc">CT scan of the left cerebral hemisphere from the CU Anschutz Plastination Library. The dominant hemisphere for language in most individuals — surface gyri and sulci of the frontal, parietal, temporal, and occipital lobes are preserved in detail. Watertight and ready for 3D printing. Derived from a body donor through the State Anatomical Board of Colorado.</p>
+        <div class="card-footer">
+          <span class="card-source"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Sketchfab</span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/brain-left-hemisphere-a3dd54a94e754fdd80063ed694356ac3" target="_blank" rel="nofollow noopener">View on Sketchfab<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 15: Left Lung ── -->
+    <div class="model-card" data-sys="respiratory">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-15">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe title="Left Lung" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/4a18d245bc954dc8a29518ca1bd10240/embed" onload="document.getElementById('ph-15').classList.add('loaded')"></iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(92,213,176,.12);color:#5cd5b0;border-color:rgba(92,213,176,.25)">
+          <span class="sys-dot" style="background:#5cd5b0"></span>Respiratory
+        </span>
+        <h2 class="card-title">Left Lung</h2>
+        <div class="card-meta">
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>CU Modern Human Anatomy Program</span>
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>3D scan from plastinated specimen</span>
+        </div>
+        <p class="card-desc">CT scan of the left lung from the CU Anschutz Plastination Library. The left lung features two lobes — superior and inferior — separated by the oblique fissure, with a cardiac notch on the mediastinal surface accommodating the heart. Derived from a body donor through the State Anatomical Board of Colorado.</p>
+        <div class="card-footer">
+          <span class="card-source"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Sketchfab</span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/left-lung-4a18d245bc954dc8a29518ca1bd10240" target="_blank" rel="nofollow noopener">View on Sketchfab<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 16: Right Lung ── -->
+    <div class="model-card" data-sys="respiratory">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-16">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe title="Right Lung" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/b9b2ea76e66744e3922173e80f88eef1/embed" onload="document.getElementById('ph-16').classList.add('loaded')"></iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(92,213,176,.12);color:#5cd5b0;border-color:rgba(92,213,176,.25)">
+          <span class="sys-dot" style="background:#5cd5b0"></span>Respiratory
+        </span>
+        <h2 class="card-title">Right Lung</h2>
+        <div class="card-meta">
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>CU Modern Human Anatomy Program</span>
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>3D scan from plastinated specimen</span>
+        </div>
+        <p class="card-desc">CT scan of the right lung from the CU Anschutz Plastination Library. The right lung has three lobes — superior, middle, and inferior — and is larger than the left due to the leftward position of the heart. The horizontal and oblique fissures are preserved in this specimen. Derived from a body donor through the State Anatomical Board of Colorado.</p>
+        <div class="card-footer">
+          <span class="card-source"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Sketchfab</span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/right-lung-b9b2ea76e66744e3922173e80f88eef1" target="_blank" rel="nofollow noopener">View on Sketchfab<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 17: Brain Right Hemisphere ── -->
+    <div class="model-card" data-sys="nervous">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-17">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe title="Brain Right Hemisphere" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/043093f8d8ae4190b3aab2ed97cb3793/embed" onload="document.getElementById('ph-17').classList.add('loaded')"></iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(46,205,184,.12);color:#2ecdb8;border-color:rgba(46,205,184,.25)">
+          <span class="sys-dot" style="background:#2ecdb8"></span>Nervous System
+        </span>
+        <h2 class="card-title">Brain Right Hemisphere</h2>
+        <div class="card-meta">
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>CU Modern Human Anatomy Program</span>
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>3D scan from plastinated specimen</span>
+        </div>
+        <p class="card-desc">CT scan of the right cerebral hemisphere from the CU Anschutz Plastination Library. The right hemisphere governs spatial reasoning, creativity, and holistic perception — the gyri and sulci across the frontal, parietal, temporal, and occipital lobes are faithfully preserved. Pairs with the Left Hemisphere model for comparative study. Derived from a body donor through the State Anatomical Board of Colorado.</p>
+        <div class="card-footer">
+          <span class="card-source"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Sketchfab</span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/brain-right-hemisphere-043093f8d8ae4190b3aab2ed97cb3793" target="_blank" rel="nofollow noopener">View on Sketchfab<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 18: Human Heart and Lungs En Bloc ── -->
+    <div class="model-card" data-sys="cardiovascular">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-18">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe title="Human Heart and Lungs En Bloc" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/dd1631a75cf34ed29aa294ac2450b52d/embed" onload="document.getElementById('ph-18').classList.add('loaded')"></iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(232,92,110,.12);color:#e85c6e;border-color:rgba(232,92,110,.25)">
+          <span class="sys-dot" style="background:#e85c6e"></span>Cardiovascular
+        </span>
+        <h2 class="card-title">Human Heart and Lungs En Bloc</h2>
+        <div class="card-meta">
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>CU Modern Human Anatomy Program</span>
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>3D scan from plastinated specimen</span>
+        </div>
+        <p class="card-desc">CT scan of the heart and lungs preserved en bloc from the CU Anschutz Plastination Library — the entire cardiopulmonary unit maintained together as dissected. Ideal for studying the spatial relationship between the heart, great vessels, and surrounding pulmonary structures in situ. Watertight and ready for 3D printing. Derived from a body donor through the State Anatomical Board of Colorado.</p>
+        <div class="card-footer">
+          <span class="card-source"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Sketchfab</span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/human-heart-and-lungs-enbloc-dd1631a75cf34ed29aa294ac2450b52d" target="_blank" rel="nofollow noopener">View on Sketchfab<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 19: Human Brain Visual Pathway ── -->
+    <div class="model-card" data-sys="nervous">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-19">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe title="Human Brain Visual Pathway" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/f82dd24f63804ac58d6e67f5d3c6d431/embed" onload="document.getElementById('ph-19').classList.add('loaded')"></iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(46,205,184,.12);color:#2ecdb8;border-color:rgba(46,205,184,.25)">
+          <span class="sys-dot" style="background:#2ecdb8"></span>Nervous System
+        </span>
+        <h2 class="card-title">Human Brain Visual Pathway</h2>
+        <div class="card-meta">
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>CU Modern Human Anatomy Program</span>
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>3D scan from plastinated specimen</span>
+        </div>
+        <p class="card-desc">A 3D model of the human brain's visual pathway, tracing the full route from the optic nerves and chiasm through the optic tracts and lateral geniculate nuclei to the primary visual cortex. Essential for understanding visual field defects and localizing lesions in neuro-ophthalmology. Derived from a body donor through the State Anatomical Board of Colorado.</p>
+        <div class="card-footer">
+          <span class="card-source"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Sketchfab</span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/human-brain-visual-pathway-f82dd24f63804ac58d6e67f5d3c6d431" target="_blank" rel="nofollow noopener">View on Sketchfab<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 20: Larynx (Plastinate Scan) ── -->
+    <div class="model-card" data-sys="respiratory">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-20">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe title="Larynx (Plastinate Scan)" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/4e2da4f2ae0e445f8a32c2d7ff4c92c2/embed" onload="document.getElementById('ph-20').classList.add('loaded')"></iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(92,213,176,.12);color:#5cd5b0;border-color:rgba(92,213,176,.25)">
+          <span class="sys-dot" style="background:#5cd5b0"></span>Respiratory
+        </span>
+        <h2 class="card-title">Larynx (Plastinate Scan)</h2>
+        <div class="card-meta">
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>CU Modern Human Anatomy Program</span>
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>3D scan from plastinated specimen</span>
+        </div>
+        <p class="card-desc">CT scan of a plastinated human larynx from the CU Anschutz Plastination Library, preserving the cartilaginous and soft-tissue anatomy of the vocal apparatus in situ — including the thyroid cartilage, cricoid cartilage, arytenoids, and vocal folds. Compare with the digitally sculpted larynx model elsewhere in this collection. Derived from a body donor through the State Anatomical Board of Colorado.</p>
+        <div class="card-footer">
+          <span class="card-source"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Sketchfab</span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/larynx-4e2da4f2ae0e445f8a32c2d7ff4c92c2" target="_blank" rel="nofollow noopener">View on Sketchfab<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 21: Human Liver with Metastasized Melanoma ── -->
+    <div class="model-card" data-sys="digestive">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-21">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe title="Human Liver with Metastasized Melanoma" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/3e370bd0f9754adcaa3fa5597e28c8e8/embed" onload="document.getElementById('ph-21').classList.add('loaded')"></iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(232,163,92,.12);color:#e8a35c;border-color:rgba(232,163,92,.25)">
+          <span class="sys-dot" style="background:#e8a35c"></span>Digestive
+        </span>
+        <h2 class="card-title">Human Liver with Metastasized Melanoma</h2>
+        <div class="card-meta">
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>CU Modern Human Anatomy Program</span>
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>3D scan from plastinated specimen</span>
+        </div>
+        <p class="card-desc">CT scan of a human liver with metastasized melanoma from the CU Anschutz Plastination Library. Visible tumor nodules distributed throughout the hepatic parenchyma offer a rare opportunity to study end-stage metastatic disease in three dimensions — ideal for pathology and oncology education. Watertight and ready for 3D printing. Derived from a body donor through the State Anatomical Board of Colorado.</p>
+        <div class="card-footer">
+          <span class="card-source"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Sketchfab</span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/human-liver-with-metastasized-melanoma-3e370bd0f9754adcaa3fa5597e28c8e8" target="_blank" rel="nofollow noopener">View on Sketchfab<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 22: Healthy Human Liver ── -->
+    <div class="model-card" data-sys="digestive">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-22">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe title="Healthy Human Liver" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/fc93d73972814c9ca5f2df4851c72976/embed" onload="document.getElementById('ph-22').classList.add('loaded')"></iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(232,163,92,.12);color:#e8a35c;border-color:rgba(232,163,92,.25)">
+          <span class="sys-dot" style="background:#e8a35c"></span>Digestive
+        </span>
+        <h2 class="card-title">Healthy Human Liver</h2>
+        <div class="card-meta">
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>CU Modern Human Anatomy Program</span>
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>3D scan from plastinated specimen</span>
+        </div>
+        <p class="card-desc">CT scan of a healthy human liver from the CU Anschutz Plastination Library, presented as a normal anatomical reference. Demonstrates the hepatic surface architecture, lobar division, and structural landmarks in the absence of pathology — use alongside the melanoma liver specimen for direct comparative study. Derived from a body donor through the State Anatomical Board of Colorado.</p>
+        <div class="card-footer">
+          <span class="card-source"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Sketchfab</span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/healthy-human-liver-fc93d73972814c9ca5f2df4851c72976" target="_blank" rel="nofollow noopener">View on Sketchfab<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 23: Whole Heart with Great Vessels ── -->
+    <div class="model-card" data-sys="cardiovascular">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-23">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe title="Whole Heart with Great Vessels" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/966a2b20ded2402ab5fa49e685582d7e/embed" onload="document.getElementById('ph-23').classList.add('loaded')"></iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(232,92,110,.12);color:#e85c6e;border-color:rgba(232,92,110,.25)">
+          <span class="sys-dot" style="background:#e85c6e"></span>Cardiovascular
+        </span>
+        <h2 class="card-title">Whole Heart with Great Vessels</h2>
+        <div class="card-meta">
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>CU Modern Human Anatomy Program</span>
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>3D scan from plastinated specimen</span>
+        </div>
+        <p class="card-desc">CT scan of a whole human heart with great vessels from the CU Anschutz Plastination Library, including the ascending aorta, pulmonary trunk, superior vena cava, and proximal pulmonary veins. Ideal for studying the spatial relationships of mediastinal vascular structures and the origins of the great vessels. Derived from a body donor through the State Anatomical Board of Colorado.</p>
+        <div class="card-footer">
+          <span class="card-source"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Sketchfab</span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/whole-heart-with-great-vessels-966a2b20ded2402ab5fa49e685582d7e" target="_blank" rel="nofollow noopener">View on Sketchfab<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 24: Aortic Arch ── -->
+    <div class="model-card" data-sys="cardiovascular">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-24">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe title="Aortic Arch" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/f21267a127284ea4995424836e11ae27/embed" onload="document.getElementById('ph-24').classList.add('loaded')"></iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(232,92,110,.12);color:#e85c6e;border-color:rgba(232,92,110,.25)">
+          <span class="sys-dot" style="background:#e85c6e"></span>Cardiovascular
+        </span>
+        <h2 class="card-title">Aortic Arch</h2>
+        <div class="card-meta">
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>CU Modern Human Anatomy Program</span>
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>3D scan from plastinated specimen</span>
+        </div>
+        <p class="card-desc">CT scan of the aortic arch from the CU Anschutz Plastination Library, showing the arch and its three major branches — the brachiocephalic trunk, left common carotid, and left subclavian arteries. Valuable for vascular anatomy education and study of pathologies relevant to aortic surgery and thoracic imaging. Derived from a body donor through the State Anatomical Board of Colorado.</p>
+        <div class="card-footer">
+          <span class="card-source"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Sketchfab</span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/aortic-arch-f21267a127284ea4995424836e11ae27" target="_blank" rel="nofollow noopener">View on Sketchfab<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 25: Heart Ventricles ── -->
+    <div class="model-card" data-sys="cardiovascular">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-25">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe title="Heart Ventricles" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/e89d5646524f49058300afa48bd871c0/embed" onload="document.getElementById('ph-25').classList.add('loaded')"></iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(232,92,110,.12);color:#e85c6e;border-color:rgba(232,92,110,.25)">
+          <span class="sys-dot" style="background:#e85c6e"></span>Cardiovascular
+        </span>
+        <h2 class="card-title">Heart Ventricles</h2>
+        <div class="card-meta">
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>CU Modern Human Anatomy Program</span>
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>3D scan from plastinated specimen</span>
+        </div>
+        <p class="card-desc">CT scan of the human cardiac ventricles from the CU Anschutz Plastination Library. Highlights the muscular walls of the right and left ventricles, the interventricular septum, and the trabecular architecture — useful for understanding the structural basis of systolic function and ventricular pathology. Derived from a body donor through the State Anatomical Board of Colorado.</p>
+        <div class="card-footer">
+          <span class="card-source"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Sketchfab</span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/heart-ventricles-e89d5646524f49058300afa48bd871c0" target="_blank" rel="nofollow noopener">View on Sketchfab<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 26: Human Heart Cardiac Bypass ── -->
+    <div class="model-card" data-sys="cardiovascular">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-26">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe title="Human Heart Cardiac Bypass" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/98dca43ff0c146b696148e6c3e70dbc0/embed" onload="document.getElementById('ph-26').classList.add('loaded')"></iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(232,92,110,.12);color:#e85c6e;border-color:rgba(232,92,110,.25)">
+          <span class="sys-dot" style="background:#e85c6e"></span>Cardiovascular
+        </span>
+        <h2 class="card-title">Human Heart — Cardiac Bypass</h2>
+        <div class="card-meta">
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>CU Modern Human Anatomy Program</span>
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>3D scan from plastinated specimen</span>
+        </div>
+        <p class="card-desc">CT scan of a human heart with coronary artery bypass grafts from the CU Anschutz Plastination Library. The graft vessels are preserved in situ, capturing the surgical anatomy of CABG — a valuable resource for surgical anatomy education, cardiac surgery training, and understanding post-operative cardiac morphology. Derived from a body donor through the State Anatomical Board of Colorado.</p>
+        <div class="card-footer">
+          <span class="card-source"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Sketchfab</span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/human-heart-cardiac-bypass-98dca43ff0c146b696148e6c3e70dbc0" target="_blank" rel="nofollow noopener">View on Sketchfab<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 27: Whole Heart ── -->
+    <div class="model-card" data-sys="cardiovascular">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-27">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe title="Whole Heart" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/2952880e001d484b999d20a8cb80c4d6/embed" onload="document.getElementById('ph-27').classList.add('loaded')"></iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(232,92,110,.12);color:#e85c6e;border-color:rgba(232,92,110,.25)">
+          <span class="sys-dot" style="background:#e85c6e"></span>Cardiovascular
+        </span>
+        <h2 class="card-title">Whole Heart</h2>
+        <div class="card-meta">
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>CU Modern Human Anatomy Program</span>
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>3D scan from plastinated specimen</span>
+        </div>
+        <p class="card-desc">CT scan of a whole human heart from the CU Anschutz Plastination Library. Presents the cardiac silhouette in its entirety — the epicardium, coronary vessels, and major surface landmarks including the interventricular groove and atrioventricular sulcus are faithfully rendered. Derived from a body donor through the State Anatomical Board of Colorado.</p>
+        <div class="card-footer">
+          <span class="card-source"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Sketchfab</span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/whole-heart-2952880e001d484b999d20a8cb80c4d6" target="_blank" rel="nofollow noopener">View on Sketchfab<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 28: Whole Human Heart ── -->
+    <div class="model-card" data-sys="cardiovascular">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-28">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe title="Whole Human Heart" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/1a5f637d2b8147d3ad29470c89e27c27/embed" onload="document.getElementById('ph-28').classList.add('loaded')"></iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(232,92,110,.12);color:#e85c6e;border-color:rgba(232,92,110,.25)">
+          <span class="sys-dot" style="background:#e85c6e"></span>Cardiovascular
+        </span>
+        <h2 class="card-title">Whole Human Heart</h2>
+        <div class="card-meta">
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>CU Modern Human Anatomy Program</span>
+          <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>3D scan from plastinated specimen</span>
+        </div>
+        <p class="card-desc">CT scan of a whole human heart from the CU Anschutz Plastination Library providing a comprehensive view of exterior and interior cardiac anatomy. Serves as a useful companion model for comparison against the bypass, ventricle, and congenital pathology specimens elsewhere in this collection. Derived from a body donor through the State Anatomical Board of Colorado.</p>
+        <div class="card-footer">
+          <span class="card-source"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Sketchfab</span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/whole-human-heart-1a5f637d2b8147d3ad29470c89e27c27" target="_blank" rel="nofollow noopener">View on Sketchfab<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STUDENT SECTION DIVIDER ── -->
+    <div class="section-divider">
+      <span class="section-divider-label">Student Contributions</span>
+      <span class="section-divider-badge">Josh Miller</span>
+    </div>
+
+    <!-- ── MODEL 05: Tetralogy of Fallot (External) ── -->
+    <div class="model-card" data-sys="cardiovascular" data-creator="student">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-5">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe
+          title="Tetralogy of Fallot — External"
+          frameborder="0"
+          allowfullscreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          xr-spatial-tracking
+          execution-while-out-of-viewport
+          execution-while-not-rendered
+          web-share
+          src="https://sketchfab.com/models/cc4c6d1075144e9d8dd26c5761bdcc88/embed"
+          onload="document.getElementById('ph-5').classList.add('loaded')">
+        </iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(232,92,110,.12);color:#e85c6e;border-color:rgba(232,92,110,.25)">
+          <span class="sys-dot" style="background:#e85c6e"></span>Cardiovascular
+        </span>
+        <h2 class="card-title">Tetralogy of Fallot — External</h2>
+        <div class="card-meta">
+          <span class="meta-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Josh Miller (Student)
+          </span>
+          <span class="meta-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Digital sculpting
+          </span>
+        </div>
+        <p class="card-desc">External view of Tetralogy of Fallot — a congenital heart defect defined by four co-occurring abnormalities: ventricular septal defect, pulmonary stenosis, an overriding aorta, and right ventricular hypertrophy. One of the most common cyanotic congenital heart conditions.</p>
+        <div class="card-footer">
+          <span class="card-source">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+            Sketchfab
+          </span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/tetralogy-of-fallot-remastered-cc4c6d1075144e9d8dd26c5761bdcc88" target="_blank" rel="nofollow noopener">
+            View on Sketchfab
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 06: Tetralogy of Fallot (Cross Section) ── -->
+    <div class="model-card" data-sys="cardiovascular" data-creator="student">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-6">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe
+          title="Tetralogy of Fallot — Cross Section"
+          frameborder="0"
+          allowfullscreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          xr-spatial-tracking
+          execution-while-out-of-viewport
+          execution-while-not-rendered
+          web-share
+          src="https://sketchfab.com/models/88314dbfa7824a6886425a23153ebfd5/embed"
+          onload="document.getElementById('ph-6').classList.add('loaded')">
+        </iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(232,92,110,.12);color:#e85c6e;border-color:rgba(232,92,110,.25)">
+          <span class="sys-dot" style="background:#e85c6e"></span>Cardiovascular
+        </span>
+        <h2 class="card-title">Tetralogy of Fallot — Cross Section</h2>
+        <div class="card-meta">
+          <span class="meta-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Josh Miller (Student)
+          </span>
+          <span class="meta-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Digital sculpting
+          </span>
+        </div>
+        <p class="card-desc">Cross-sectional view of Tetralogy of Fallot, revealing the internal anatomy of the defect — including the ventricular septal defect and the relationship of the overriding aorta to both ventricles. Ideal for understanding intracardiac blood flow dynamics in this cyanotic condition.</p>
+        <div class="card-footer">
+          <span class="card-source">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+            Sketchfab
+          </span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/tetralogy-of-fallot-cross-section-remastered-88314dbfa7824a6886425a23153ebfd5" target="_blank" rel="nofollow noopener">
+            View on Sketchfab
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 07: Transposition of Great Vessels (External) ── -->
+    <div class="model-card" data-sys="cardiovascular" data-creator="student">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-7">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe
+          title="Transposition of Great Vessels — External"
+          frameborder="0"
+          allowfullscreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          xr-spatial-tracking
+          execution-while-out-of-viewport
+          execution-while-not-rendered
+          web-share
+          src="https://sketchfab.com/models/82d478e25b2b48b9b826f233376cd044/embed"
+          onload="document.getElementById('ph-7').classList.add('loaded')">
+        </iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(232,92,110,.12);color:#e85c6e;border-color:rgba(232,92,110,.25)">
+          <span class="sys-dot" style="background:#e85c6e"></span>Cardiovascular
+        </span>
+        <h2 class="card-title">Transposition of Great Vessels — External</h2>
+        <div class="card-meta">
+          <span class="meta-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Josh Miller (Student)
+          </span>
+          <span class="meta-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Digital sculpting
+          </span>
+        </div>
+        <p class="card-desc">External view of Transposition of the Great Vessels — a congenital defect in which the aorta arises from the right ventricle and the pulmonary artery from the left ventricle, creating two parallel and non-communicating circulatory circuits. Life-threatening without intervention.</p>
+        <div class="card-footer">
+          <span class="card-source">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+            Sketchfab
+          </span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/transposition-of-great-vessels-82d478e25b2b48b9b826f233376cd044" target="_blank" rel="nofollow noopener">
+            View on Sketchfab
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 08: Transposition of Great Vessels (Cross Section) ── -->
+    <div class="model-card" data-sys="cardiovascular" data-creator="student">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-8">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe
+          title="Transposition of Great Vessels — Cross Section"
+          frameborder="0"
+          allowfullscreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          xr-spatial-tracking
+          execution-while-out-of-viewport
+          execution-while-not-rendered
+          web-share
+          src="https://sketchfab.com/models/2c646699a7aa4bacaa027361e82e8619/embed"
+          onload="document.getElementById('ph-8').classList.add('loaded')">
+        </iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(232,92,110,.12);color:#e85c6e;border-color:rgba(232,92,110,.25)">
+          <span class="sys-dot" style="background:#e85c6e"></span>Cardiovascular
+        </span>
+        <h2 class="card-title">Transposition of Great Vessels — Cross Section</h2>
+        <div class="card-meta">
+          <span class="meta-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Josh Miller (Student)
+          </span>
+          <span class="meta-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Digital sculpting
+          </span>
+        </div>
+        <p class="card-desc">Cross-sectional view of Transposition of the Great Vessels, revealing the switched origins of the great arteries and their relationship to the ventricular chambers. Useful for understanding the intracardiac anatomy and the rationale for arterial switch operative correction.</p>
+        <div class="card-footer">
+          <span class="card-source">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+            Sketchfab
+          </span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/transposition-of-great-vessels-cross-section-2c646699a7aa4bacaa027361e82e8619" target="_blank" rel="nofollow noopener">
+            View on Sketchfab
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 09: Patent Foramen Ovale (External) ── -->
+    <div class="model-card" data-sys="cardiovascular" data-creator="student">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-9">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe
+          title="Patent Foramen Ovale — External"
+          frameborder="0"
+          allowfullscreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          xr-spatial-tracking
+          execution-while-out-of-viewport
+          execution-while-not-rendered
+          web-share
+          src="https://sketchfab.com/models/25d4dd1e088542a388656b45b4d38d0c/embed"
+          onload="document.getElementById('ph-9').classList.add('loaded')">
+        </iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(232,92,110,.12);color:#e85c6e;border-color:rgba(232,92,110,.25)">
+          <span class="sys-dot" style="background:#e85c6e"></span>Cardiovascular
+        </span>
+        <h2 class="card-title">Patent Foramen Ovale — External</h2>
+        <div class="card-meta">
+          <span class="meta-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Josh Miller (Student)
+          </span>
+          <span class="meta-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Digital sculpting
+          </span>
+        </div>
+        <p class="card-desc">External view of a heart with Patent Foramen Ovale — a persistence of the fetal foramen ovale opening between the right and left atria that normally closes shortly after birth. Present in approximately 25% of the adult population and associated with cryptogenic stroke risk.</p>
+        <div class="card-footer">
+          <span class="card-source">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+            Sketchfab
+          </span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/foramen-ovale-25d4dd1e088542a388656b45b4d38d0c" target="_blank" rel="nofollow noopener">
+            View on Sketchfab
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 10: Patent Foramen Ovale (Cross Section) ── -->
+    <div class="model-card" data-sys="cardiovascular" data-creator="student">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-10">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe
+          title="Patent Foramen Ovale — Cross Section"
+          frameborder="0"
+          allowfullscreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          xr-spatial-tracking
+          execution-while-out-of-viewport
+          execution-while-not-rendered
+          web-share
+          src="https://sketchfab.com/models/a1e0119b86494fbb89b0ff8820f25650/embed"
+          onload="document.getElementById('ph-10').classList.add('loaded')">
+        </iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(232,92,110,.12);color:#e85c6e;border-color:rgba(232,92,110,.25)">
+          <span class="sys-dot" style="background:#e85c6e"></span>Cardiovascular
+        </span>
+        <h2 class="card-title">Patent Foramen Ovale — Cross Section</h2>
+        <div class="card-meta">
+          <span class="meta-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Josh Miller (Student)
+          </span>
+          <span class="meta-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Digital sculpting
+          </span>
+        </div>
+        <p class="card-desc">Cross-sectional view exposing the interatrial septum with the persistent foramen ovale opening. Demonstrates the anatomical relationship between the septum primum and septum secundum, and the flap-valve mechanism through which paradoxical embolism can occur.</p>
+        <div class="card-footer">
+          <span class="card-source">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+            Sketchfab
+          </span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/foramen-ovale-cross-section-a1e0119b86494fbb89b0ff8820f25650" target="_blank" rel="nofollow noopener">
+            View on Sketchfab
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 11: Patent Truncus Arteriosus (External) ── -->
+    <div class="model-card" data-sys="cardiovascular" data-creator="student">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-11">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe
+          title="Patent Truncus Arteriosus — External"
+          frameborder="0"
+          allowfullscreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          xr-spatial-tracking
+          execution-while-out-of-viewport
+          execution-while-not-rendered
+          web-share
+          src="https://sketchfab.com/models/693caa2f423542b1844535417dae8d34/embed"
+          onload="document.getElementById('ph-11').classList.add('loaded')">
+        </iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(232,92,110,.12);color:#e85c6e;border-color:rgba(232,92,110,.25)">
+          <span class="sys-dot" style="background:#e85c6e"></span>Cardiovascular
+        </span>
+        <h2 class="card-title">Patent Truncus Arteriosus — External</h2>
+        <div class="card-meta">
+          <span class="meta-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Josh Miller (Student)
+          </span>
+          <span class="meta-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Digital sculpting
+          </span>
+        </div>
+        <p class="card-desc">External view of Patent Truncus Arteriosus — a rare congenital defect in which a single arterial trunk exits both ventricles, supplying systemic, pulmonary, and coronary circulation from one common vessel rather than the normal separate aorta and pulmonary artery.</p>
+        <div class="card-footer">
+          <span class="card-source">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+            Sketchfab
+          </span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/patent-truncus-arteriosus-693caa2f423542b1844535417dae8d34" target="_blank" rel="nofollow noopener">
+            View on Sketchfab
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODEL 12: Patent Truncus Arteriosus (Cross Section) ── -->
+    <div class="model-card" data-sys="cardiovascular" data-creator="student">
+      <div class="embed-wrap">
+        <div class="embed-placeholder" id="ph-12">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <p>Loading 3D viewer…</p>
+        </div>
+        <iframe
+          title="Patent Truncus Arteriosus — Cross Section"
+          frameborder="0"
+          allowfullscreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          xr-spatial-tracking
+          execution-while-out-of-viewport
+          execution-while-not-rendered
+          web-share
+          src="https://sketchfab.com/models/47153f74ab34403990d6a99b64ba1ca9/embed"
+          onload="document.getElementById('ph-12').classList.add('loaded')">
+        </iframe>
+      </div>
+      <div class="card-body">
+        <span class="sys-badge" style="background:rgba(232,92,110,.12);color:#e85c6e;border-color:rgba(232,92,110,.25)">
+          <span class="sys-dot" style="background:#e85c6e"></span>Cardiovascular
+        </span>
+        <h2 class="card-title">Patent Truncus Arteriosus — Cross Section</h2>
+        <div class="card-meta">
+          <span class="meta-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Josh Miller (Student)
+          </span>
+          <span class="meta-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Digital sculpting
+          </span>
+        </div>
+        <p class="card-desc">Cross-sectional view of Patent Truncus Arteriosus, showing the single common arterial trunk overriding the ventricular septal defect. Illustrates how mixed oxygenated and deoxygenated blood exits through the single truncal valve — critical for understanding the hemodynamic consequences of this defect.</p>
+        <div class="card-footer">
+          <span class="card-source">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+            Sketchfab
+          </span>
+          <a class="sketchfab-link" href="https://sketchfab.com/3d-models/patent-truncus-arteriosus-cross-section-47153f74ab34403990d6a99b64ba1ca9" target="_blank" rel="nofollow noopener">
+            View on Sketchfab
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
   </div><!-- /models-grid -->
 </div><!-- /grid-wrap -->
 
@@ -481,13 +1350,19 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     const sys = btn.dataset.sys;
     let visible = 0;
     cards.forEach(card => {
-      const match = sys === 'all' || card.dataset.sys === sys;
+      let match;
+      if (sys === 'all') match = true;
+      else if (sys === 'student') match = card.dataset.creator === 'student';
+      else match = card.dataset.sys === sys;
       card.classList.toggle('hidden', !match);
       if (match) visible++;
     });
     resultsInfo.textContent = visible === cards.length ? '' : `${visible} of ${cards.length} models`;
   });
 });
+</script>
+<script>
+(function(){var btn=document.getElementById('navHamburger'),menu=document.getElementById('navMobile');if(!btn||!menu)return;btn.addEventListener('click',function(e){e.stopPropagation();var o=menu.classList.toggle('open');btn.classList.toggle('open',o);btn.setAttribute('aria-expanded',o);});document.addEventListener('keydown',function(e){if(e.key==='Escape'){menu.classList.remove('open');btn.classList.remove('open');btn.setAttribute('aria-expanded','false');}});document.addEventListener('click',function(e){if(!btn.contains(e.target)&&!menu.contains(e.target)){menu.classList.remove('open');btn.classList.remove('open');btn.setAttribute('aria-expanded','false');}});})();
 </script>
 </body>
 </html>

@@ -147,6 +147,21 @@ footer a{color:var(--gold);text-decoration:none}
   .hero-stats{flex-wrap:wrap;border-radius:8px}
   .hero-stat{padding:12px 20px}
 }
+
+/* ─── MOBILE NAV ─── */
+.nav-hamburger{display:none;align-items:center;justify-content:center;flex-direction:column;gap:5px;width:36px;height:36px;background:transparent;border:1px solid var(--border-h);border-radius:6px;cursor:pointer;padding:8px;margin-left:auto;flex-shrink:0}
+.nav-hamburger:hover{border-color:var(--gold-bd);background:var(--gold-bg)}
+.nav-hamburger span{display:block;width:16px;height:1.5px;background:var(--text-mid);border-radius:2px;transition:transform 220ms ease,opacity 180ms ease}
+.nav-hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);background:var(--gold)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);background:var(--gold)}
+.nav-mobile{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(8,10,18,.98);border-bottom:1px solid var(--border);backdrop-filter:blur(16px);flex-direction:column}
+.nav-mobile.open{display:flex}
+.nav-mobile a{font-size:13px;font-weight:500;color:var(--text-dim);text-decoration:none;padding:13px 20px;border-bottom:1px solid var(--border);transition:color var(--ease),background var(--ease)}
+.nav-mobile a:last-child{border-bottom:none}
+.nav-mobile a:hover{color:var(--text);background:rgba(255,255,255,.04)}
+.nav-mobile a.active{color:var(--gold);background:var(--gold-bg)}
+@media(max-width:768px){.nav-hamburger{display:flex}.nav-links{display:none}}
 </style>
 </head>
 <body>
@@ -156,6 +171,17 @@ footer a{color:var(--gold);text-decoration:none}
   <a href="cu-organ-home.html" class="nav-brand">CU Organ Library</a>
   <div class="nav-links">
     <a href="index.html" style="color:var(--gold);opacity:.8;border-right:1px solid var(--border);padding-right:14px;margin-right:6px">← MHA OER</a>
+    <a href="nervous-system-specimens.html">Nervous System</a>
+    <a href="cardiovascular-respiratory-specimens.html">Cardiovascular &amp; Respiratory</a>
+    <a href="gastrointestinal-specimens.html">Gastrointestinal</a>
+    <a href="genitourinary-reproductive-specimens.html">Genitourinary &amp; Reproductive</a>
+    <a href="lymphatic-specimens.html">Lymphatic</a>
+  </div>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-mobile" id="navMobile">
+    <a href="index.html" style="color:var(--gold);opacity:.8">← MHA OER</a>
     <a href="nervous-system-specimens.html">Nervous System</a>
     <a href="cardiovascular-respiratory-specimens.html">Cardiovascular &amp; Respiratory</a>
     <a href="gastrointestinal-specimens.html">Gastrointestinal</a>
@@ -410,5 +436,8 @@ footer a{color:var(--gold);text-decoration:none}
   </div>
 </footer>
 
+<script>
+(function(){var btn=document.getElementById('navHamburger'),menu=document.getElementById('navMobile');if(!btn||!menu)return;btn.addEventListener('click',function(e){e.stopPropagation();var o=menu.classList.toggle('open');btn.classList.toggle('open',o);btn.setAttribute('aria-expanded',o);});document.addEventListener('keydown',function(e){if(e.key==='Escape'){menu.classList.remove('open');btn.classList.remove('open');btn.setAttribute('aria-expanded','false');}});document.addEventListener('click',function(e){if(!btn.contains(e.target)&&!menu.contains(e.target)){menu.classList.remove('open');btn.classList.remove('open');btn.setAttribute('aria-expanded','false');}});})();
+</script>
 </body>
 </html>
